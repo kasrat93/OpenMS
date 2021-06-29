@@ -70,10 +70,8 @@ namespace OpenMS
                                                      const AASequence& seq2)
   {
     if (seq1 == seq2) return 1.0;
-    // order of sequences matters for cache look-up:
-    String unmod_seq1 = seq1.toUnmodifiedString(); //for swap, not to throw errors with const
-    String unmod_seq2 = seq1.toUnmodifiedString();
-    if (seq2 < seq1) std::swap(unmod_seq1, unmod_seq2); // "operator>" not defined
+    // order of sequences matters for cache look-up:    
+    if (seq2 < seq1) getSimilarity_(seq2, seq1); // "operator>" not defined
     pair<AASequence, AASequence> seq_pair = make_pair(seq1, seq2);
     SimilarityCache::iterator pos = similarities_.find(seq_pair);
     if (pos != similarities_.end()) return pos->second; // score found in cache
