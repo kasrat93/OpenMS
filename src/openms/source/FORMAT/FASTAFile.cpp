@@ -198,10 +198,6 @@ namespace OpenMS
     }
     ++entries_read_;
 
-    protein.identifier = std::move(id_);
-    protein.description = std::move(description_);
-    protein.sequence = std::move(seq_);
-
     return true;
   }
 
